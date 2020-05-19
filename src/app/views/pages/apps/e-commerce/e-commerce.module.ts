@@ -53,9 +53,6 @@ import { CustomerEditDialogComponent } from './customers/customer-edit/customer-
 // Products
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
-import { RemarksListComponent } from './products/_subs/remarks/remarks-list/remarks-list.component';
-import { SpecificationsListComponent } from './products/_subs/specifications/specifications-list/specifications-list.component';
-import { SpecificationEditDialogComponent } from './products/_subs/specifications/specification-edit/specification-edit-dialog.component';
 // Orders
 import { OrdersListComponent } from './orders/orders-list/orders-list.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
@@ -202,7 +199,6 @@ const routes: Routes = [
 		DeleteEntityDialogComponent,
 		FetchEntityDialogComponent,
 		UpdateStatusDialogComponent,
-		SpecificationEditDialogComponent
 	],
 	declarations: [
 		ECommerceComponent,
@@ -215,9 +211,6 @@ const routes: Routes = [
 		// Products
 		ProductsListComponent,
 		ProductEditComponent,
-		RemarksListComponent,
-		SpecificationsListComponent,
-		SpecificationEditDialogComponent
 	]
 })
 export class ECommerceModule { }

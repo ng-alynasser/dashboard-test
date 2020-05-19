@@ -182,12 +182,10 @@
 			</mat-tab>
 			<mat-tab label="Product remarks" [disabled]="!product || !product.id">
 				<ng-template matTabContent>
-					<kt-remarks-list [productId$]="productId$"></kt-remarks-list>
 				</ng-template>
 			</mat-tab>
 			<mat-tab label="Product specifications" [disabled]="!product || !product.id">
 				<ng-template matTabContent>
-					<kt-specifications-list [productId$]="productId$"></kt-specifications-list>
 				</ng-template>
 			</mat-tab>
 		</mat-tab-group>

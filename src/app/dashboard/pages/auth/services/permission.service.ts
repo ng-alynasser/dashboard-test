@@ -1,0 +1,355 @@
+import { Injectable } from "@angular/core";
+import { Observable, of } from 'rxjs';
+
+interface Permission {
+  id: number,
+  title: string,
+  name: string,
+  parentId?: number,
+  level: number,
+}
+
+@Injectable()
+export class PermissionService {
+
+  private readonly _permissions: Permission[] = [
+    {
+      id: 1,
+      name: 'accessToUsers',
+      level: 1,
+      title: 'Users Module',
+    },
+    {
+      id: 2,
+      name: 'accessToStatics',
+      level: 1,
+      title: 'Statics Module'
+    },
+    {
+      id: 3,
+      name: 'accessToContactMessages',
+      level: 1,
+      title: 'ContactMessages Module'
+    },
+    {
+      id: 4,
+      name: 'accessToArts',
+      level: 1,
+      title: 'Arts Module',
+    },
+    {
+      id: 5,
+      name: 'accessToCategories',
+      level: 1,
+      title: 'Categories Module',
+    },
+    {
+      id: 6,
+      name: 'accessToDesigners',
+      level: 1,
+      title: 'Designers Module',
+    },
+    {
+      id: 7,
+      name: 'accessToOptions',
+      level: 1,
+      title: 'Options Module',
+    },
+    {
+      id: 8,
+      name: 'accessToProducts',
+      level: 1,
+      title: 'Products Module',
+    },
+    {
+      id: 9,
+      name: 'accessToReviews',
+      level: 1,
+      title: 'Reviews Module',
+    },
+    {
+      id: 10,
+      name: 'accessToVendors',
+      level: 1,
+      title: 'Vendors Module',
+    },
+    {
+      id: 11,
+      name: 'read users',
+      level: 2,
+      parentId: 1,
+      title: 'Read',
+    },
+    {
+      id: 12,
+      name: 'create users',
+      level: 2,
+      parentId: 1,
+      title: 'Create',
+    },
+    {
+      id: 13,
+      name: 'update users',
+      level: 2,
+      parentId: 1,
+      title: 'Update',
+    },
+    {
+      id: 14,
+      name: 'delete users',
+      level: 2,
+      parentId: 1,
+      title: 'Delete',
+    },
+    {
+      id: 15,
+      name: 'read statics',
+      level: 2,
+      parentId: 2,
+      title: 'Read',
+    },
+    {
+      id: 16,
+      name: 'create statics',
+      level: 2,
+      parentId: 2,
+      title: 'Create',
+    },
+    {
+      id: 17,
+      name: 'update statics',
+      level: 2,
+      parentId: 2,
+      title: 'Update',
+    },
+    {
+      id: 18,
+      name: 'delete statics',
+      level: 2,
+      parentId: 2,
+      title: 'Delete',
+    },
+    {
+      id: 19,
+      name: 'read contact messages',
+      level: 2,
+      parentId: 3,
+      title: 'Read',
+    },
+    {
+      id: 20,
+      name: 'update contact messages',
+      level: 2,
+      parentId: 3,
+      title: 'Update',
+    },
+    {
+      id: 21,
+      name: 'delete contact messages',
+      level: 2,
+      parentId: 3,
+      title: 'Delete'
+    },
+    {
+      id: 22,
+      name: 'read arts',
+      level: 2,
+      parentId: 4,
+      title: 'Read',
+    },
+    {
+      id: 23,
+      name: 'create arts',
+      level: 2,
+      parentId: 4,
+      title: 'Create',
+    },
+    {
+      id: 24,
+      name: 'update arts',
+      level: 2,
+      parentId: 4,
+      title: 'Update',
+    },
+    {
+      id: 25,
+      name: 'delete arts',
+      level: 2,
+      parentId: 4,
+      title: 'Delete',
+    },
+    {
+      id: 26,
+      name: 'read categories',
+      level: 2,
+      parentId: 5,
+      title: 'Read',
+    },
+    {
+      id: 27,
+      name: 'create categories',
+      level: 2,
+      parentId: 5,
+      title: 'Create',
+    },
+    {
+      id: 28,
+      name: 'update categories',
+      level: 2,
+      parentId: 5,
+      title: 'Update',
+    },
+    {
+      id: 29,
+      name: 'delete categories',
+      level: 2,
+      parentId: 5,
+      title: 'Delete',
+    },
+    {
+      id: 30,
+      name: 'read designers',
+      level: 2,
+      parentId: 6,
+      title: 'Read',
+    },
+    {
+      id: 31,
+      name: 'create designers',
+      level: 2,
+      parentId: 6,
+      title: 'Create',
+    },
+    {
+      id: 32,
+      name: 'update designers',
+      level: 2,
+      parentId: 6,
+      title: 'Update',
+    },
+    {
+      id: 33,
+      name: 'delete designers',
+      level: 2,
+      parentId: 6,
+      title: 'Delete',
+    },
+    {
+      id: 34,
+      name: 'read options',
+      level: 2,
+      parentId: 7,
+      title: 'Read',
+    },
+    {
+      id: 35,
+      name: 'create options',
+      level: 2,
+      parentId: 7,
+      title: 'Create',
+    },
+    {
+      id: 36,
+      name: 'update options',
+      level: 2,
+      parentId: 7,
+      title: 'Update',
+    },
+    {
+      id: 37,
+      name: 'delete options',
+      level: 2,
+      parentId: 7,
+      title: 'Delete'
+    },
+    {
+      id: 39,
+      name: 'read products',
+      level: 2,
+      parentId: 8,
+      title: 'Read',
+    },
+    {
+      id: 40,
+      name: 'create products',
+      level: 2,
+      parentId: 8,
+      title: 'Create',
+    },
+    {
+      id: 41,
+      name: 'update products',
+      level: 2,
+      parentId: 8,
+      title: 'Update',
+    },
+    {
+      id: 42,
+      name: 'delete products',
+      level: 2,
+      parentId: 8,
+      title: 'Delete',
+    },
+    {
+      id: 43,
+      name: 'read reviews',
+      level: 2,
+      parentId: 9,
+      title: 'Read',
+    },
+    {
+      id: 44,
+      name: 'create reviews',
+      level: 2,
+      parentId: 9,
+      title: 'Create',
+    },
+    {
+      id: 45,
+      name: 'update reviews',
+      level: 2,
+      parentId: 9,
+      title: 'Update',
+    },
+    {
+      id: 46,
+      name: 'delete reviews',
+      level: 2,
+      parentId: 9,
+      title: 'Delete',
+    },
+    {
+      id: 47,
+      name: 'read vendors',
+      level: 2,
+      parentId: 10,
+      title: 'Read',
+    },
+    {
+      id: 48,
+      name: 'create vendors',
+      level: 2,
+      parentId: 10,
+      title: 'Create',
+    },
+    {
+      id: 49,
+      name: 'update vendors',
+      level: 2,
+      parentId: 10,
+      title: 'Update',
+    },
+    {
+      id: 50,
+      name: 'delete vendors',
+      level: 2,
+      parentId: 10,
+      title: 'Delete',
+    },
+  ];
+
+  getAllPremissions(): Observable<Permission[]> {
+    return of(this._permissions);
+  }
+  
+}
